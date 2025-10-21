@@ -31,10 +31,10 @@ class Book extends Model
             'title' => 'required|string|max:255',
             'author_id' => 'required|exists:authors,id',
             'publication_year' => 'required|integer',
-            'genre' => 'required|string|max:255',
+            'genre' => 'required|string|max:255', 
         ]);
         if ($validator->fails()) {
             throw new \Exception($validator->errors()->first());
         }
     }
-}
+} 
