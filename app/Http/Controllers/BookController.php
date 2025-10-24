@@ -11,8 +11,8 @@ class BookController extends Controller
        public function index()
        {
            $books = Book::with('author')->get();
-   
-           return response()->json($books);
+   return view('books.index', compact('books'));
+          // return response()->json($books);
        }
     //
 }
