@@ -10,9 +10,10 @@ class BookController extends Controller
        // Menampilkan daftar buku beserta nama penulis (JSON)
        public function index()
        {
+        
            $books = Book::with('author')->get();
    return view('books.index', compact('books'));
           // return response()->json($books);
        }
-    //
+    // 
 }
