@@ -13,11 +13,17 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_category_id')->constrained('product_categories')->onDelete('restrict');
+            $table->unsignedBigInteger('product_category_id'); // penting: harus sama tipe-nya
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->decimal('price', 10, 2);
             $table->timestamps();
+        
+            $table->foreign('product_category_id')
+                  ->references('id')
+                  ->on('product_categories')
+                  ->onDelete('restrict');
         });
+        
     }
 
     /**

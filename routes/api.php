@@ -29,17 +29,13 @@ Route::post('/products', [ProductController::class, 'store']);
 // ✅ Vendor (pakai resource controller)
 Route::resource('vendor', VendorController::class);
 
-// ✅ Product Variants (sesuai tugas)
+// ✅ Product Variants (tanpa middleware → bisa diakses publik)
 Route::get('/product-variants', [ProductVariantController::class, 'index']);       // Menampilkan semua produk
 Route::get('/product-variants/{id}', [ProductVariantController::class, 'show']);   // Menampilkan detail produk
 
-// Middleware checkRole hanya untuk admin (POST, PUT, DELETE)
+// ✅ Product Variants (hanya admin bisa POST, PUT, DELETE)
 Route::middleware(['checkRole:admin'])->group(function () {
     Route::post('/product-variants', [ProductVariantController::class, 'store']);     // Tambah produk
     Route::put('/product-variants/{id}', [ProductVariantController::class, 'update']); // Update produk
     Route::delete('/product-variants/{id}', [ProductVariantController::class, 'destroy']); // Hapus produk
 });
-
-Route::post('/product-variants', [ProductVariantController::class, 'store']);     // Tambah produk
-    Route::put('/product-variants/{id}', [ProductVariantController::class, 'update']); // Update produk
-    Route::delete('/product-variants/{id}', [ProductVariantController::class, 'destroy']); // Hapus produk
