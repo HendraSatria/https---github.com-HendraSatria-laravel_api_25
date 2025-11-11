@@ -3,12 +3,20 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Api\ProductCategoriesController;
 
 
 Route::prefix('v1')->group(function () {
-    Route::resource('products', ProductController::class);
-    
+    Route::resource('product_categories', ProductCategoriesController::class);
 
+    Route::get('/product_categories', [ProductCategoriesController::class, 'index']);
+    
+    Route::get('/user', function(request $request){
+        return $request->user();
+    });
     Route::get('/products', [ProductController::class, 'index']);
-    Route::post('/products-store', [ProductController::class, 'store']);
+    Route::post('/products', [ProductController::class, 'store']);
+
+    
 });
+
