@@ -7,9 +7,10 @@ use App\Http\Controllers\Api\ProductCategoriesController;
 
 
 Route::prefix('v1')->group(function () {
-    Route::resource('product_categories', ProductCategoriesController::class);
+    Route::apiResource('product-categories', ProductCategoriesController::class);
+    //Route::resource('product-categories', ProductCategoriesController::class);
 
-    Route::get('/product_categories', [ProductCategoriesController::class, 'index']);
+    //Route::get('/product-categories', [ProductCategoriesController::class, 'index']);
     
     Route::get('/user', function(request $request){
         return $request->user();
